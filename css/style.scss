@@ -1,0 +1,513 @@
+@charset "utf-8";
+
+$bp: 768px;
+
+@mixin mq {
+    @media (min-width: ($bp)) {
+        @content;
+    }
+}
+
+/* common part
+----------------- */
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: "Noto Sans", "Noto Sans JP" sans-serif;
+    color: #333333;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+    &:hover {
+        opacity: 50%;
+    }
+}
+
+img {
+    width: 100%;
+    vertical-align: bottom;
+}
+
+.wrapper_w1200_pd16 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+li {
+    list-style: none;
+}
+
+.el__read-more-button {
+    display: flex;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.875rem;
+    line-height: 17px;
+    position: relative;
+    &::after {
+        content: "";
+        height: 1px;
+        width: 100%;
+        background-color: #333333;
+        position: absolute;
+        bottom: -1px;
+        transition: all 0.2s ease;
+    }
+
+    &:hover {
+        opacity: 1;
+        &::after {
+            transform: translateY(3px);
+            opacity: 0;
+        }
+    }
+}
+
+/* header
+----------------- */
+h1 {
+    line-height: 1px;
+}
+
+h1 > a {
+    display: inline-block;
+}
+
+.logo-top {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.logo-top img {
+    height: 30px;
+}
+
+.nav {
+    background-color: #333333;
+    overflow-x: scroll;
+    @include mq {
+        overflow-x: hidden;
+    }
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list > li {
+    display: flex;
+    align-items: center;
+    padding: 10px 58px 10px 0;
+}
+.nav-list > li > a {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #ffffff;
+}
+
+/* pick-up, main, aside layout
+----------------- */
+.pickup-main-aside_ly {
+    display: grid;
+    grid-template:
+        "... ..... ..." clamp(1.813rem, 1.621rem + 0.82vw, 2.438rem)
+        "... pick  ..."
+        "... ..... ..." 106px
+        "... main  ..."
+        "... ..... ..." 80.5px
+        "... aside ..."
+        "... ..... ..." 120px
+        /0 1fr 0;
+    @include mq {
+        grid-template:
+            "... .... .... ..... ..." clamp(1.813rem, 1.621rem + 0.82vw, 2.438rem)
+            "... pick pick pick  ..."
+            "... .... .... ..... ..." 74px
+            "... main .... aside ..."
+            "... .... .... ..... ..." 140px
+            /0 65% 3.7% 1fr 0;
+    }
+}
+
+.pick-up_ly {
+    grid-area: pick;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    @include mq {
+        flex-direction: row;
+        gap: 23.25px;
+    }
+}
+
+.main_ly {
+    grid-area: main;
+}
+
+.aside_ly {
+    grid-area: aside;
+}
+
+/* pick-up
+----------------- */
+.bl__pick-up-content_ly {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bl__pick-up-content_ly > img {
+    margin-bottom: 12px;
+}
+
+.bl__pick-up-content_ly > h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+/* main
+----------------- */
+.main-area_ly {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    @include mq {
+        gap: 84.5px;
+    }
+}
+
+.bl_main-content_ly {
+    display: grid;
+    grid-template:
+        "... ............. ..."
+        "... title         ..."
+        "... ............. ..." 14px
+        "... time-category ..."
+        "... ............. ..." 10px
+        "... img           ..."
+        "... ............. ..." 13px
+        "... text          ..."
+        "... ............. ..." 29px
+        "... button        ..."
+        "... ............. ..."
+        / 0 1fr 0;
+    @include mq {
+        grid-template:
+            "... ............. ..."
+            "... title         ..."
+            "... ............. ..." 15px
+            "... time-category ..."
+            "... ............. ..." 11px
+            "... img           ..."
+            "... ............. ..." 13px
+            "... text          ..."
+            "... ............. ..." 28px
+            "... button        ..."
+            "... ............. ..."
+            / 0 1fr 0;
+    }
+}
+
+.bl_main-content_ly > h2 {
+    grid-area: title;
+    font-size: 1.5rem;
+    line-height: 34px;
+}
+
+.bl_main-content_ly > .time-category_ly {
+    grid-area: time-category;
+    display: flex;
+    font-size: 0.875rem;
+    line-height: 17px;
+
+    time {
+        letter-spacing: -0.8px;
+    }
+
+    ul {
+        margin-left: 21px;
+    }
+}
+
+.bl_main-content_ly > .el__main-content-img {
+    grid-area: img;
+}
+
+.bl_main-content_ly > p {
+    grid-area: text;
+    display: flex;
+    padding: 0 40px;
+}
+
+.bl_main-content_ly > .el__read-more-button {
+    grid-area: button;
+    @include mq {
+        letter-spacing: -0.2px;
+    }
+}
+
+/* aside
+----------------- */
+
+/* aside common part
+----------------- */
+.section-title {
+    font-size: 1.125rem;
+    line-height: 22px;
+    font-weight: bold;
+    margin-bottom: 32px;
+    text-align: center;
+    font-family: "Noto Sans JP";
+    @include mq {
+        margin-bottom: 30px;
+    }
+}
+
+/* aside layout
+----------------- */
+.aside_ly {
+    display: grid;
+    grid-template:
+        "... ....... ..."
+        "... author  ..."
+        "... ....... ..." 60px
+        "... ranking ..."
+        "... ....... ..." 60px
+        "... archive ..."
+        "... ....... ..."
+        / 0 1fr 0;
+    @include mq {
+        padding-right: 20px;
+        grid-template:
+            "... ....... ..." 6px
+            "... author  ..."
+            "... ....... ..." 60px
+            "... ranking ..."
+            "... ....... ..." 60px
+            "... archive ..."
+            "... ....... ..."
+            / 0 1fr 0;
+    }
+}
+
+/* aside-author block
+----------------- */
+.aside_ly > .author_ly {
+    grid-area: author;
+    display: grid;
+    grid-template:
+        "... .... ..."
+        "... img  ..."
+        "... .... ..." 35px
+        "... name ..."
+        "... .... ..." 30px
+        "... text ..."
+        "... .... ..."
+        / 0 1fr 0;
+    @include mq {
+        grid-template:
+            "... .... ..."
+            "... img  ..."
+            "... .... ..." 35px
+            "... name ..."
+            "... .... ..." 32px
+            "... text ..."
+            "... .... ..."
+            / 0 1fr 0;
+    }
+}
+
+.author_ly > .author-img {
+    grid-area: img;
+    margin: 0 auto;
+    width: 130px;
+    border-radius: 50%;
+}
+
+.author_ly > .author-name {
+    grid-area: name;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    font-weight: bold;
+    line-height: 22px;
+    letter-spacing: -1px;
+}
+
+.author_ly > p {
+    grid-area: text;
+    font-size: 0.875rem;
+    line-height: 21.4px;
+}
+
+/* aside-ranking block
+----------------- */
+.aside_ly > .ranking_ly {
+    grid-area: ranking;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+.ranking-content_ly {
+    margin-bottom: 28px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    > a {
+        > img {
+            margin-bottom: 3px;
+        }
+        > h4 {
+            font-size: 0.875rem;
+            font-weight: normal;
+            line-height: 20px;
+            @include mq {
+                line-height: 20.5px;
+            }
+        }
+    }
+}
+
+/* aside-archive block
+----------------- */
+.aside_ly > .archive_ly {
+    grid-area: archive;
+}
+
+.archive-list > li {
+    padding: 18px 0 17px 20px;
+    border-bottom: 1px solid #777777;
+    &:first-child {
+        border-top: 1px solid #777777;
+    }
+}
+
+.archive-list > li > a {
+    font-size: 0.875rem;
+    line-height: 17px;
+    letter-spacing: -1.2px;
+}
+
+/* footer
+----------------- */
+
+/* footer common part
+----------------- */
+#footer {
+    background-color: #f7f7f7;
+}
+
+.footer-content-title {
+    font-size: 1.125rem;
+    line-height: 22px;
+    font-weight: bold;
+    margin-bottom: 32px;
+    font-family: "Noto Sans JP";
+}
+
+/* footer layout
+----------------- */
+.footer_ly {
+    display: grid;
+    grid-template:
+        "... ....... ..." 52px
+        "... about   ..."
+        "... ....... ..." 52px
+        "... menu    ..."
+        "... ....... ..." 32px
+        "... twitter ..."
+        "... ....... ..." 90px
+        "... cr      ..."
+        "... ....... ..." 12px
+        / 0 1fr 0;
+    @include mq {
+        grid-template:
+            "... ..... ... .... ... ....... ..." 55px
+            "... about ... menu ... twitter ..."
+            "... ..... ... .... ... ....... ..." 60px
+            "... cr    cr  cr   cr  cr      ..."
+            "... ..... ... .... ... ....... ..." 12px
+            / 0 1fr 5% 1fr 5% 1fr 0;
+    }
+}
+
+/* section about 
+----------------- */
+.footer_about {
+    grid-area: about;
+}
+
+.footer_about > p {
+    margin-bottom: 17px;
+    font-size: 0.875rem;
+    letter-spacing: -0.1px;
+}
+
+.footer_about > ul {
+    gap: 12px;
+}
+
+.footer_about > ul > li > a {
+    display: inline-block;
+    margin-left: 12px;
+    font-size: 0.875rem;
+    line-height: 17px;
+    position: relative;
+    &::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border: 8px solid transparent;
+        border-left-color: #333333;
+        position: absolute;
+        left: -12px;
+    }
+}
+
+/* section menu 
+----------------- */
+.footer_menu {
+    grid-area: menu;
+
+    .footer-content-title {
+        margin-bottom: 30px;
+    }
+}
+
+.menu-list > li {
+    padding: 12px 0 13px 15px;
+    border-bottom: 1px solid #777777;
+    &:first-child {
+        border-top: 1px solid #777777;
+    }
+
+    a {
+        font-size: 0.875rem;
+    }
+}
+
+/* section twitter
+----------------- */
+.footer_twitter {
+    grid-area: twitter;
+}
+
+/* section twitter
+----------------- */
+.copyright {
+    grid-area: cr;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    font-family: "Noto Sans JP";
+}
